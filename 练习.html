@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="作者" content="李炎炎">
+        <title></title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <button type="button" onclick="Sing();"> 吟诗</button>
+        <script>
+           
+          function Sing (){
+               with(arguments.callee);
+               alert( author + ":" + poem)
+           };
+          var= author 
+          author = "李白";
+           var= poem
+           poem = "汉家秦地月，流影照明妃。一上玉关道，天涯去不归";
+           Sing();
+          author = "李战";
+           poem = "日出汉家天，月落阴山前。女儿琵琶怨，已唱三千年";
+           Sing();
+        </script>
+    </body>
+</html>
