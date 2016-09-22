@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="唐必富">
+        <title>手机模仿</title>
+        <style>
+            .wrapper-1{
+                background: url(img/320.png) no-repeat;
+                width: 400px;
+                height: 745px;
+                margin: 0 auto;
+            }
+            .wrapper-2{
+                width: 334px;
+                height: 413px;
+                left: 35px;
+                position: relative;
+                top: 200px;
+                background: #CFD6DE;
+            }
+            main{
+                width: 100%;               
+            }
+            ul{
+                list-style: none;
+                padding: 10px;
+                margin: 0;
+                height: 350px;
+                overflow: auto;
+            }
+            footer{
+                position: absolute;
+                bottom: 0;
+                padding: 10px;
+                width: 100%;
+                box-sizing: border-box;
+                background: #DEDEDE;
+            }
+            form{
+                display: inline-block;
+            }
+            input{
+                width: 210px;
+                height: 25px;
+            }
+            button{
+                height: 30px;
+            }
+            .faceS{
+                background: url(img/btn_1.jpg) ;
+                height:30px;
+                width: 10%;
+                display: inline-block;
+                vertical-align: bottom;
+            }
+            .face{
+                display: none;
+            }
+            .face ul{
+                height: 100%;
+            }
+            .face li{
+                display: inline-block;
+            }
+            .li-clear{
+                clear: both;
+            }
+            .li-float{
+                float: right;
+                margin: 9px 0;
+            }
+            .li-s-e{
+                background: #8BC5F2;
+                max-width: 140px;
+                margin-left: 5px;
+                padding: 3px;
+                line-height: 18px;
+                display: inline-block;
+                border: 1px solid #999;
+                border-radius: 5px;
+                word-break: break-all;
+                box-shadow: 0 1px 2px #999;
+                vertical-align: top;
+                font-size: 12px;
+            }
+            .li-s-o{
+                background: #EAEBED;
+                max-width: 140px;
+                padding: 3px;
+                margin-right: 5px;
+                line-height: 18px;
+                display: inline-block;
+                border: 1px solid #999;
+                border-radius: 5px;
+                word-break: break-all;
+                text-align: left;
+                box-shadow: 0 1px 2px #999;
+                vertical-align: top;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper-1">
+            <div class="wrapper-2">
+                <main>
+                    <ul></ul>
+                </main>
+                <footer>
+                    <div class="faceS">
+                    </div>
+                    <form action="">
+                        <input type="text" value="">
+                        <button type="button" id="land">发送</button>
+                    </form>
+                    <div class="face">
+                        <ul>
+                            <li><img src="img/face/f1.png" /></li>
+                            <li><img src="img/face/f2.png" /></li>
+                            <li><img src="img/face/f3.png" /></li>
+                            <li><img src="img/face/f4.png" /></li>
+                            <li><img src="img/face/f5.png" /></li>
+                            <li><img src="img/face/f1.png" /></li>
+                            <li><img src="img/face/f2.png" /></li>
+                            <li><img src="img/face/f3.png" /></li>
+                            <li><img src="img/face/f4.png" /></li>
+                            <li><img src="img/face/f5.png" /></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script>      
+            var button = document.getElementById('land')
+            var ult = document.querySelector('main ul')
+            var ulb = document.querySelector('.face ul')
+            var lis = document.querySelectorAll('.face li')
+            var div = document.getElementsByClassName('faceS')[0]
+            var imgs = document.querySelectorAll('.face img')
+            var face = document.getElementsByClassName('face')[0]
+            var count = 0  
+
+
+            //点击发送内容
+             button.onclick = function(){
+                 var input = document.querySelector('input')
+                 var inputV = input.value;
+                if(inputV.length == 0){
+                    input.placeholder = '请输入内容'
+                } 
+                else{      
+                    count++
+                    var li = document.createElement('li')
+                    var img = document.createElement('img')
+                    var span = document.createElement('span')
+                    span.innerHTML = inputV;
+                    if(count % 2 == 1 ){
+                        li.appendChild(img)
+                        img.src = 'img/peo1.jpg'
+                        li.appendChild(span)
+                        li.className = 'li-clear'
+                        span.className = 'li-s-e'
+                    }else{
+                        li.appendChild(span)
+                        li.appendChild(img)
+                        img.src = 'img/peo2.jpg'
+                        li.className = 'li-float'
+                        span.className = 'li-s-o'
+                    }
+                    ult.appendChild(li)
+                    ult.scrollIntoView();    
+                }
+                input.value = '';
+            }
+
+            //表情隐藏
+            var countf = 0
+             div.onclick = function(){
+                  countf++ 
+                  if(countf % 2 == 1){
+                      face.style.display = 'block'
+                      ult.style.height = '300px'
+                  }else{
+                      face.style.display = ''
+                      ult.style.height = '350px'
+                  }
+            }
+
+            //点击发送表情
+            for(var j = 0;j<lis.length;j++){
+                lis[j].index = j;
+                lis[j].onclick = function(){     
+                    document.querySelector('input').value = document.querySelector('input').value + this.innerHTML  
+                }
+            }
+            
+        </script>
+    </body>
+<html>
